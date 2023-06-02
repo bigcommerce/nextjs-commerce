@@ -21,8 +21,8 @@ import { getCheckoutQuery } from './queries/checkout';
 import { getMenuQuery } from './queries/menu';
 import { getPageQuery, getPagesQuery } from './queries/page';
 import {
+  getFeaturedProductsQuery,
   getNewestProductsQuery,
-  getPopularProductsQuery,
   getProductQuery,
   getProductsCollectionQuery,
   getProductsRecommedationsQuery,
@@ -41,11 +41,11 @@ import {
   BigCommerceCreateCartOperation,
   BigCommerceDeleteCartItemOperation,
   BigCommerceEntityIdOperation,
+  BigCommerceFeaturedProductsOperation,
   BigCommerceMenuOperation,
   BigCommerceNewestProductsOperation,
   BigCommercePageOperation,
   BigCommercePagesOperation,
-  BigCommercePopularProductsOperation,
   BigCommerceProductOperation,
   BigCommerceProductsCollectionOperation,
   BigCommerceRecommendationsOperation,
@@ -193,22 +193,22 @@ const getBigCommerceProductsWithCheckout = async (
   });
   const checkout = resCheckout.body.data.site.checkout ?? {
     subtotal: {
-        value: 0,
-        currencyCode: '',
+      value: 0,
+      currencyCode: ''
     },
     grandTotal: {
-        value: 0,
-        currencyCode: '',
+      value: 0,
+      currencyCode: ''
     },
     taxTotal: {
-        value: 0,
-        currencyCode: '',
-    },
+      value: 0,
+      currencyCode: ''
+    }
   };
 
   return {
     productsByIdList: bigCommerceProducts,
-    checkout,
+    checkout
   };
 };
 
@@ -239,7 +239,7 @@ export async function createCart(): Promise<VercelCart> {
 
 export async function addToCart(
   cartId: string,
-  lines: { merchandiseId: string; quantity: number, productId?: string }[]
+  lines: { merchandiseId: string; quantity: number; productId?: string }[]
 ): Promise<VercelCart> {
   let bigCommerceCart: BigCommerceCart;
 
@@ -319,7 +319,7 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
 // Update on selected options requires variantEntityId, optionEntityId
 export async function updateCart(
   cartId: string,
-  lines: { id: string; merchandiseId: string; quantity: number, productId?: string}[]
+  lines: { id: string; merchandiseId: string; quantity: number; productId?: string }[]
 ): Promise<VercelCart> {
   let cartState: { status: number; body: BigCommerceUpdateCartItemOperation } | undefined;
 
@@ -367,7 +367,7 @@ export async function getCart(cartId: string): Promise<VercelCart | null> {
   const lines = vercelFromBigCommerceLineItems(cart.lineItems);
   const { productsByIdList, checkout } = await getBigCommerceProductsWithCheckout(cartId, lines);
 
-  return bigcommerceToVercelCart(cart, productsByIdList, checkout);;
+  return bigcommerceToVercelCart(cart, productsByIdList, checkout);
 }
 
 export async function getCollection(handle: string): Promise<VercelCollection> {
@@ -414,18 +414,18 @@ export async function getCollectionProducts({
   }
 
   if (expectedCollectionBreakpoints[collection] === 'featured_collection') {
-    const res = await bigcommerceFetch<BigCommercePopularProductsOperation>({
-      query: getPopularProductsQuery,
+    const res = await bigcommerceFetch<BigCommerceFeaturedProductsOperation>({
+      query: getFeaturedProductsQuery,
       variables: {
         first: 10
       }
     });
 
-    if (!res.body.data.site.bestSellingProducts) {
+    if (!res.body.data.site.featuredProducts) {
       console.log(`No collection found for \`${collection}\``);
       return [];
     }
-    const productList = res.body.data.site.bestSellingProducts.edges.map((item) => item.node);
+    const productList = res.body.data.site.featuredProducts.edges.map((item) => item.node);
 
     return bigcommerceToVercelProducts(productList);
   }
