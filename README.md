@@ -6,19 +6,20 @@ A Next.js 13 and App Router-ready headless storefront template for BigCommerce, 
 
 - Next.js App Router
 - Optimized for SEO using Next.js's Metadata
-- [React Server Components (RSCs)]() and [Suspense]()
+- [React Server Components (RSCs)](https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components) and [Suspense](https://react.dev/blog/2022/03/29/react-v18#suspense-in-data-frameworks)
 - Route handlers for mutations
 - Edge runtime
 - New fetching and caching paradigms
 - Dynamic OG images
-- Styling with [Tailwind CSS]()
+- Styling with [Tailwind CSS](https://tailwindcss.com/)
 - Automatic light/dark mode based on system settings
 
 ## Prerequisites
 
-Next.js + BigCommerce requires a [BigCommerce sandbox or store provisioned to run a headless storefront]().
+Next.js + BigCommerce requires a [BigCommerce sandbox](https://developer.bigcommerce.com/api-docs/partner/create-a-sandbox) or a [production store provisioned to run a headless storefront](https://www.bigcommerce.com/solutions/multi-store/). Consult the following articles in BigCommerce's DevDocs for configuration and guidance:
 
-<!-- ++++ TODO: configuration directions from DevDocs quickstart -->
+- [Next.js + BigCommerce Configuration](https://developer.bigcommerce.com/api-docs/storefronts/nextjs-commerce)
+- [Guide to Building Headless Storefronts](https://developer.bigcommerce.com/api-docs/storefronts/guide/overview)
 
 ## Develop locally
 
@@ -57,12 +58,12 @@ The app runs on [localhost:3000](http://localhost:3000/).
 
 ## Configure checkout
 
-- [Optimized One-Page Checkout]()
-- [Stencil theme to customize checkout page]() and inform styling of shopper emails
+- [Optimized One-Page Checkout](https://developer.bigcommerce.com/stencil-docs/customizing-checkout/optimized-one-page-checkout)
+- [Stencil theme to customize checkout page](https://developer.bigcommerce.com/stencil-docs/getting-started/about-stencil#stencil-cli) and inform styling of shopper emails
 
 ## Get to know the BigCommerce GraphQL Storefront API
 
-In addition to being compatible with BigCommerce's multi-storefront features, Next.js + BigCommerce uses the [GraphQL Storefront API](). This API makes it possible for merchants to control the representation of products and categories, carts, orders, customer segmentation, and more. To get a sense of what is possible to do directly on the storefront, check out the dedicated [GraphQL Playground]() for the sandbox.
+In addition to being compatible with BigCommerce's multi-storefront features, Next.js + BigCommerce uses the [GraphQL Storefront API](https://developer.bigcommerce.com/api-docs/storefront/graphql/graphql-api-overview). This API makes it possible for merchants to control the representation of products and categories, carts, orders, customer segmentation, and more. To get a sense of what is possible to do directly on the storefront, check out the dedicated [GraphQL Playground](https://developer.bigcommerce.com/graphql-storefront/playground) for the sandbox.
 <!-- ++++ TODO: directions on accessing the playground -->
 ## Explore BigCommerce features
 
@@ -70,25 +71,24 @@ BigCommerce's open SaaS feature set powers your store. Visit the BigCommerce dev
 
 Core store configuration:
 
-- [Catalog management]()
-- [Multi-Storefront and alternate channel sales]()
-- [Buy Online, Pick up in Store](), also known as Click and Collect
-- [Webhooks]()
+- [Catalog management](https://developer.bigcommerce.com/docs/rest-catalog)
+- [Multi-Storefront and alternate channel sales](https://developer.bigcommerce.com/api-docs/multi-storefront/overview)
+- [Buy Online, Pick up in Store](https://developer.bigcommerce.com/buy-online-pick-up-in-store/overview), also known as Click and Collect
+- [Webhooks](https://developer.bigcommerce.com/docs/webhooks/overview)
 
 Shopper journeys:
 
-- [Faceted Search]()
-- [Promotions]()
-- [Customer Segmentation]()
-- [Carts]()
-- [Abandoned Carts]()
-- [Checkout]()
-- [Payments]()
-- [Tax]()
-- [Orders]()
-- [Emails]()
-- [Shipping]()
+- [GraphQL Storefront Faceted Search](https://developer.bigcommerce.com/api-docs/storefront/graphql/graphql-faceted-textual-search)
+- [Promotions](https://developer.bigcommerce.com/promotions/overview)
+- [Customer Segmentation](https://developer.bigcommerce.com/customer-segmentation/overview)
+- [GraphQL Storefront Carts and Checkouts]()
+- [Abandoned Carts](https://developer.bigcommerce.com/docs/rest-management/abandoned-carts)
+- [Payments](https://developer.bigcommerce.com/docs/rest-payments)
+- [Tax](https://developer.bigcommerce.com/docs/rest-management/tax-settings#get-tax-settings)
+- [Orders](https://developer.bigcommerce.com/api-docs/storefronts/guide/orders)
+- [Emails](https://developer.bigcommerce.com/docs/rest-content/email-templates)
+- [Shipping](https://developer.bigcommerce.com/docs/rest-management/shipping-v2)
 
 ## Join our developer community
 
-<!-- ++++ TODO add stuff per heather -->
+We invite you to give feedback and ask questions in our [Developer Community](/community) BigCommerceDevs Slack or Discord server.
