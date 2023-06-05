@@ -1,4 +1,4 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20Commerce&demo-description=An%20all-in-one%20starter%20kit%20for%20high-performance%20e-commerce%20sites.&demo-url=https%3A%2F%2Fdemo.vercel.store%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1RzhtOHEvW7xyn9qAsdr5E%2F783c7bbd498d0f3b752637d2efa0bb6e%2FNew_Project__5_.png&project-name=Next.js%20Commerce&repository-name=nextjs-commerce&repository-url=https://github.com/bigcommerce/nextjs-commerce/tree/vercel-init&from=templates&env=BIGCOMMERCE_ACCESS_TOKEN%2CBIGCOMMERCE_CHANNEL_ID%2CBIGCOMMERCE_STORE_HASH%2CBIGCOMMERCE_CANONICAL_STORE_DOMAIN%2CBIGCOMMERCE_API_URL%2CBIGCOMMERCE_CDN_HOSTNAME&envDescription=These%20values%20allow%20you%20to%20connect%20to%20your%20headless%20BigCommmerce%20store.&teamCreateStatus=hidden)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?demo-title=Next.js%20Commerce&demo-description=An%20all-in-one%20starter%20kit%20for%20high-performance%20e-commerce%20sites.&demo-url=https%3A%2F%2Fnext-commerce-v2.vercel.app%2F&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F1RzhtOHEvW7xyn9qAsdr5E%2F783c7bbd498d0f3b752637d2efa0bb6e%2FNew_Project__5_.png&project-name=Next.js%20Commerce&repository-name=nextjs-commerce&repository-url=https://github.com/bigcommerce/nextjs-commerce&from=templates&env=BIGCOMMERCE_ACCESS_TOKEN%2CBIGCOMMERCE_CHANNEL_ID%2CBIGCOMMERCE_STORE_HASH%2CBIGCOMMERCE_CANONICAL_STORE_DOMAIN%2CBIGCOMMERCE_API_URL%2CBIGCOMMERCE_CDN_HOSTNAME&envDescription=These%20values%20allow%20you%20to%20connect%20to%20your%20headless%20BigCommmerce%20store.)
 
 # Next.js + BigCommerce
 
@@ -64,7 +64,9 @@ The app runs on [localhost:3000](http://localhost:3000/).
 ## Get to know the BigCommerce GraphQL Storefront API
 
 In addition to being compatible with BigCommerce's multi-storefront features, Next.js + BigCommerce uses the [GraphQL Storefront API](https://developer.bigcommerce.com/api-docs/storefront/graphql/graphql-api-overview). This API makes it possible for merchants to control the representation of products and categories, carts, orders, customer segmentation, and more. To get a sense of what is possible to do directly on the storefront, check out the dedicated [GraphQL Playground](https://developer.bigcommerce.com/graphql-storefront/playground) for the sandbox.
+
 <!-- ++++ TODO: directions on accessing the playground -->
+
 ## Explore BigCommerce features
 
 BigCommerce's open SaaS feature set powers your store. Visit the BigCommerce developer documentation to learn more about your options for the following features:
