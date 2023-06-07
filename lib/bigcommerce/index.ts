@@ -29,7 +29,7 @@ import {
   searchProductsQuery
 } from './queries/product';
 import { getEntityIdByRouteQuery } from './queries/route';
-import { fetchStorefrontToken } from './storefront-config';
+import { fetchStorefrontToken, memoizedCartRedirectUrl } from './storefront-config';
 import {
   BigCommerceAddToCartOperation,
   BigCommerceCart,
@@ -206,8 +206,12 @@ const getBigCommerceProductsWithCheckout = async (
     }
   };
 
+  const checkoutUrlRes = await memoizedCartRedirectUrl(cartId);
+  const checkoutUrl = checkoutUrlRes.data?.embedded_checkout_url;
+
   return {
     productsByIdList: bigCommerceProducts,
+    checkoutUrl,
     checkout
   };
 };
@@ -280,12 +284,12 @@ export async function addToCart(
     bigCommerceCart = res.body.data.cart.createCart.cart;
   }
 
-  const { productsByIdList, checkout } = await getBigCommerceProductsWithCheckout(
+  const { productsByIdList, checkout, checkoutUrl } = await getBigCommerceProductsWithCheckout(
     bigCommerceCart.entityId,
     lines
   );
 
-  return bigcommerceToVercelCart(bigCommerceCart, productsByIdList, checkout);
+  return bigcommerceToVercelCart(bigCommerceCart, productsByIdList, checkout, checkoutUrl);
 }
 
 export async function removeFromCart(cartId: string, lineIds: string[]): Promise<VercelCart> {
@@ -310,9 +314,9 @@ export async function removeFromCart(cartId: string, lineIds: string[]): Promise
 
   const cart = cartState!.body.data.cart.deleteCartLineItem.cart;
   const lines = vercelFromBigCommerceLineItems(cart.lineItems);
-  const { productsByIdList, checkout } = await getBigCommerceProductsWithCheckout(cartId, lines);
+  const { productsByIdList, checkout, checkoutUrl } = await getBigCommerceProductsWithCheckout(cartId, lines);
 
-  return bigcommerceToVercelCart(cart, productsByIdList, checkout);
+  return bigcommerceToVercelCart(cart, productsByIdList, checkout, checkoutUrl);
 }
 
 // NOTE: looks like we can update only product-level update.
@@ -347,9 +351,9 @@ export async function updateCart(
   }
 
   const updatedCart = cartState!.body.data.cart.updateCartLineItem.cart;
-  const { productsByIdList, checkout } = await getBigCommerceProductsWithCheckout(cartId, lines);
+  const { productsByIdList, checkout, checkoutUrl } = await getBigCommerceProductsWithCheckout(cartId, lines);
 
-  return bigcommerceToVercelCart(updatedCart, productsByIdList, checkout);
+  return bigcommerceToVercelCart(updatedCart, productsByIdList, checkout, checkoutUrl);
 }
 
 export async function getCart(cartId: string): Promise<VercelCart | null> {
@@ -365,9 +369,9 @@ export async function getCart(cartId: string): Promise<VercelCart | null> {
 
   const cart = res.body.data.site.cart;
   const lines = vercelFromBigCommerceLineItems(cart.lineItems);
-  const { productsByIdList, checkout } = await getBigCommerceProductsWithCheckout(cartId, lines);
+  const { productsByIdList, checkout, checkoutUrl } = await getBigCommerceProductsWithCheckout(cartId, lines);
 
-  return bigcommerceToVercelCart(cart, productsByIdList, checkout);
+  return bigcommerceToVercelCart(cart, productsByIdList, checkout, checkoutUrl);
 }
 
 export async function getCollection(handle: string): Promise<VercelCollection> {

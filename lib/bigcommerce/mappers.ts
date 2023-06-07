@@ -234,11 +234,12 @@ const bigcommerceToVercelCartItems = (
 const bigcommerceToVercelCart = (
   cart: BigCommerceCart,
   products: ProductsList,
-  checkout: BigCommerceCheckout
+  checkout: BigCommerceCheckout,
+  checkoutUrl?: string
 ): VercelCart => {
   return {
     id: cart.entityId,
-    checkoutUrl: '', // TODO: add later
+    checkoutUrl: checkoutUrl ?? '',
     cost: {
       subtotalAmount: {
         amount: checkout.subtotal.value.toString(),
