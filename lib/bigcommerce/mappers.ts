@@ -73,8 +73,8 @@ const bigCommerceToVercelVariants = (
 const bigCommerceToVercelProduct = (product: BigCommerceProduct): VercelProduct => {
   const createVercelProductImage = (img: { url: string; altText: string }) => {
     return {
-      url: img.url,
-      altText: img.altText,
+      url: img ? img.url : '',
+      altText: img ? img.altText : '',
       width: 2048,
       height: 2048
     };
@@ -288,11 +288,8 @@ const bigCommerceToVercelCollection = (collection: BigCommerceCollection): Verce
 };
 
 export {
-  bigCommerceToVercelCart,
-  bigCommerceToVercelProduct,
-  bigCommerceToVercelProducts,
-  bigCommerceToVercelCollection,
-  vercelFromBigCommerceLineItems
+  bigCommerceToVercelCart, bigCommerceToVercelCollection, bigCommerceToVercelProduct,
+  bigCommerceToVercelProducts, vercelFromBigCommerceLineItems
 };
 
 export const vercelToBigCommerceSorting = (
