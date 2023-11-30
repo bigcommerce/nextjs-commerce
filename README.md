@@ -22,13 +22,13 @@ Learn more about our suite of Next.js 13+ tools for enterprise commerce: https:/
 
 Next.js + BigCommerce requires a [BigCommerce sandbox](https://developer.bigcommerce.com/api-docs/partner/create-a-sandbox) or a [production store provisioned to run a headless storefront](https://www.bigcommerce.com/solutions/multi-store/).
 
-To get started, use this README and the [example environment variable comments](.env.example).
+To get started, use this README and the [example environment variable comments](https://github.com/bigcommerce/nextjs-commerce/blob/main/.env.example).
 
 ## Develop locally
 
 To automatically clone the template repo and configure Vercel environment variables for your project, use the [Deploy with Vercel](#) button at the beginning of this README. After you complete the interactive configuration sequence, you can clone the automatically-created project to your local environment.
 
-You can also clone the template repo manually and supply the environment variables [defined in .env.example](.env.example). The best practice is to use [Vercel environment variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
+You can also clone the template repo manually and supply the environment variables [defined in .env.example](https://github.com/bigcommerce/nextjs-commerce/blob/main/.env.example). The best practice is to use [Vercel environment variables](https://vercel.com/docs/concepts/projects/environment-variables) for this, but a `.env` file is all that is necessary.
 
 > Note: Do not commit your `.env` file. It exposes secrets that allow others to control your BigCommerce store.
 
