@@ -32,25 +32,24 @@ You can also clone the template repo manually and supply the environment variabl
 
 > Note: Do not commit your `.env` file. It exposes secrets that allow others to control your BigCommerce store.
 
-1. Install the Vercel CLI:
+- Install the Vercel CLI:
 
 ```bash
 npm i -g vercel
 ```
-
-2. Link your local instance with the desired Vercel and GitHub accounts. This action creates a `.vercel` directory:
+- Link your local instance with the desired Vercel and GitHub accounts. This action creates a `.vercel` directory:
 
 ```bash
 vercel link
 ```
 
-3. Download the [Vercel environment variables](https://vercel.com/docs/concepts/projects/environment-variables):
+- Download the [Vercel environment variables](https://vercel.com/docs/concepts/projects/environment-variables):
 
 ```bash
 vercel env pull
 ```
 
-4. Install the app's default dependencies and start the development server:
+- Install the app's default dependencies and start the development server:
 
 ```bash
 pnpm install
