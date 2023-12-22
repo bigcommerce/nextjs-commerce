@@ -1,4 +1,5 @@
 import { isVercelCommerceError } from 'lib/type-guards';
+import { notFound } from 'next/navigation';
 import { NextRequest, NextResponse } from 'next/server';
 import { BIGCOMMERCE_GRAPHQL_API_ENDPOINT } from './constants';
 
@@ -81,7 +82,7 @@ const getEntityIdByHandle = async (entityHandle: string) => {
     }
   });
 
-  return res.body.data.site.route.node.entityId;
+  return res.body.data.site.route.node?.entityId;
 };
 
 export async function bigCommerceFetch<T>({
@@ -585,6 +586,11 @@ export async function getMenu(handle: string): Promise<VercelMenu[]> {
 
 export async function getPage(handle: string): Promise<VercelPage> {
   const entityId = await getEntityIdByHandle(handle);
+
+  if (!entityId) {
+    notFound();
+  }
+
   const res = await bigCommerceFetch<BigCommercePageOperation>({
     query: getPageQuery,
     variables: {

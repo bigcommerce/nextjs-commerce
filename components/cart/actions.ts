@@ -1,7 +1,7 @@
 'use server';
 
-import { TAGS } from 'lib/constants';
 import { addToCart, removeFromCart, updateCart } from 'lib/bigcommerce';
+import { TAGS } from 'lib/constants';
 import { revalidateTag } from 'next/cache';
 import { cookies } from 'next/headers';
 
@@ -70,8 +70,13 @@ export async function updateItemQuantity(
 
   try {
     if (quantity === 0) {
-      await removeFromCart(cartId, [lineId]);
+      const response = await removeFromCart(cartId, [lineId]);
       revalidateTag(TAGS.cart);
+
+      if (!response && cartId) {
+        cookies().delete('cartId');
+      }
+
       return;
     }
 
