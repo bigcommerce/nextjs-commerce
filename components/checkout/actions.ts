@@ -17,10 +17,10 @@ import { cookies } from "next/headers";
 // Combines two baskets updates in a single action.
 export async function updateShippingContact(
   prevState: FormActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormActionState<typeof informationFormSchema>> {
   const { success, error, data } = informationFormSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
 
   if (!success) {
@@ -43,11 +43,11 @@ export async function updateShippingContact(
       phone: data.phone ? data.phone.replace(/\D/g, "") : undefined,
     });
 
-    revalidateTag(TAGS.cart);
+    revalidateTag(TAGS.cart, "max");
   } catch (error) {
     return handleFormActionError(
       error,
-      "An error occurred while updating your shipping address",
+      "An error occurred while updating your shipping address"
     );
   }
 }
@@ -55,10 +55,10 @@ export async function updateShippingContact(
 // Action to add/update the shipping method for the shipment
 export async function updateShippingMethod(
   prevState: FormActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormActionState<typeof shippingMethodFormSchema>> {
   const { success, error, data } = shippingMethodFormSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
 
   if (!success) {
@@ -68,11 +68,11 @@ export async function updateShippingMethod(
   try {
     await api.updateShippingMethod(data.shippingMethodId);
 
-    revalidateTag(TAGS.cart);
+    revalidateTag(TAGS.cart, "max");
   } catch (error) {
     return handleFormActionError(
       error,
-      "An error occurred while updating your shipping method",
+      "An error occurred while updating your shipping method"
     );
   }
 }
@@ -81,7 +81,7 @@ export async function updateShippingMethod(
 // TODO: Need to handle edit scenario differently
 export async function addPaymentMethod(
   prevState: FormActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormActionState<typeof paymentFormSchema>> {
   const paymentData = Object.fromEntries(formData.entries());
   const { success, error, data } = paymentFormSchema.safeParse(paymentData);
@@ -99,11 +99,11 @@ export async function addPaymentMethod(
       securityCode: data.securityCode,
     });
 
-    revalidateTag(TAGS.cart);
+    revalidateTag(TAGS.cart, "max");
   } catch (error) {
     return handleFormActionError(
       error,
-      "An error occurred while adding your payment method",
+      "An error occurred while adding your payment method"
     );
   }
 }
@@ -111,10 +111,10 @@ export async function addPaymentMethod(
 // Action to update billing address
 export async function updateBillingAddress(
   prevState: FormActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormActionState<typeof billingAddressSchema>> {
   const { success, error, data } = billingAddressSchema.safeParse(
-    Object.fromEntries(formData.entries()),
+    Object.fromEntries(formData.entries())
   );
 
   if (!success) {
@@ -136,7 +136,7 @@ export async function updateBillingAddress(
         : undefined,
     });
 
-    revalidateTag(TAGS.cart);
+    revalidateTag(TAGS.cart, "max");
   } catch (error) {
     return handleFormActionError(error, "Error updating billing address");
   }
@@ -145,7 +145,7 @@ export async function updateBillingAddress(
 // Action to place the order
 export async function placeOrder(
   prevState: FormActionState,
-  formData: FormData,
+  formData: FormData
 ): Promise<FormActionState> {
   try {
     const order = await api.placeOrder();
@@ -155,11 +155,11 @@ export async function placeOrder(
     // Set the order number in a cookie so we can get the order details on the confirmation page.
     (await cookies()).set("orderId", order.orderNumber!);
 
-    revalidateTag(TAGS.cart);
+    revalidateTag(TAGS.cart, "max");
   } catch (error) {
     return handleFormActionError(
       error,
-      "An error occurred while placing your order",
+      "An error occurred while placing your order"
     );
   }
 }
